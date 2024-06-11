@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../models/dummy_data.dart';
-import '../../models/meal.dart';
+import '../../data/dummy_data.dart';
+import '../../data/meal.dart';
 
 class BreakfastDetailScreen extends StatefulWidget {
   const BreakfastDetailScreen({Key? key}) : super(key: key);

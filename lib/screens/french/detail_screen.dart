@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../models/dummy_data.dart';
-import '../../models/meal.dart';
+import '../../data/dummy_data.dart';
+import '../../data/meal.dart';
 
 class FrenchDetailScreen extends StatefulWidget {
   const FrenchDetailScreen({Key? key}) : super(key: key);

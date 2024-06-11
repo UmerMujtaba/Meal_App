@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/bottom_bar.dart';
-import '../models/drawer.dart';
-import '../models/dummy_data.dart';
-import '../models/meal.dart';
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
+import '../data/dummy_data.dart';
+import '../data/meal.dart';
 
 class ItalianScreen extends StatefulWidget {
   const ItalianScreen({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _ItalianScreenState extends State<ItalianScreen> {
                           borderRadius: BorderRadius.circular(15),
                           child: Image.network(
                             "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg",
-                
+
                             //meal!.imageUrl,
                             height: 250,
                             width: double.infinity,

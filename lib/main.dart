@@ -19,7 +19,7 @@ import 'package:mealapp/screens/quick/detail_screen.dart';
 import 'package:mealapp/screens/quick_screen.dart';
 import 'package:mealapp/screens/summer/detail_screen.dart';
 import 'package:mealapp/screens/summer_screen.dart';
-import 'cateogry_screen.dart';
+import 'models/cateogry_screen.dart';
 import 'screens/favorites_screen.dart';
 
 void main() {

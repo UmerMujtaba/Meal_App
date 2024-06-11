@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/cateogry_screen.dart';
+import 'package:mealapp/models/cateogry_screen.dart';
 import '../screens/favorites_screen.dart';
 import 'drawer.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/bottom_bar.dart';
-import '../models/drawer.dart';
-import '../models/dummy_data.dart';
-import '../models/meal.dart';
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
+import '../data/dummy_data.dart';
+import '../data/meal.dart';
 
 class AsianScreen extends StatefulWidget {
   const AsianScreen({Key? key}) : super(key: key);
