@@ -52,7 +52,7 @@ class _QuickScreenState extends State<QuickScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (ctx) => QuickDetailScreen(),// meal: meal
+                              builder: (ctx) => const QuickDetailScreen(),// meal: meal
                             ),
                           );
                         },

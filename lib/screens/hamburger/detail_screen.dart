@@ -3,8 +3,7 @@ import '../../models/dummy_data.dart';
 import '../../models/meal.dart';
 
 class HamburgerDetailScreen extends StatefulWidget {
-  // final Meal meal;
-  // required this.meal
+
   const HamburgerDetailScreen({ Key? key}) : super(key: key);
 
   @override
@@ -12,25 +11,31 @@ class HamburgerDetailScreen extends StatefulWidget {
 }
 
 class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
-
+  Meal? meal;
 
   @override
   void initState() {
     super.initState();
 
+    final italianMeals = dummyMeals.where((meal) {
+      return meal.categories.contains('c3');
+    }).toList();
+
+    if (italianMeals.isNotEmpty) {
+      meal = italianMeals[0];
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Meal meal;
+    //final Meal meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: Text(
-          '',
-          // meal.title,
+          meal!.title,
           style: const TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
@@ -52,7 +57,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
         child: Column(
           children: <Widget>[
             Image.network(
-              "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg",
+              meal!.imageUrl,
               width: double.infinity,
               height: 300,
               fit: BoxFit.fill,
@@ -67,7 +72,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              //itemCount: meal!.ingredients.length,
+              itemCount: meal!.ingredients.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
@@ -75,8 +80,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      '',
-                      //meal!.ingredients[index],
+                      meal!.ingredients[index],
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -97,7 +101,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              // itemCount: meal!.steps.length,
+              itemCount: meal!.steps.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -105,8 +109,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      '',
-                      //meal!.steps[index],
+                      meal!.steps[index],
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,

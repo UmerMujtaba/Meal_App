@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../models/dummy_data.dart';
-import '../../models/meal.dart';
 
 class QuickDetailScreen extends StatefulWidget {
   // final Meal meal;
@@ -22,16 +20,16 @@ class _QuickDetailScreenState extends State<QuickDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Meal meal;
+
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
-        title: Text(
+        title: const Text(
           '',
           // meal.title,
-          style: const TextStyle(color: Colors.white, fontSize: 22),
+          style: TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
           IconButton(
@@ -72,12 +70,12 @@ class _QuickDetailScreenState extends State<QuickDetailScreen> {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
                   // Reduce space between tiles
-                  child: ListTile(
+                  child: const ListTile(
                     dense: true,
                     title: Text(
                       '',
                       //meal!.ingredients[index],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
@@ -102,12 +100,12 @@ class _QuickDetailScreenState extends State<QuickDetailScreen> {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   // Reduce space between tiles
-                  child: ListTile(
+                  child: const ListTile(
                     dense: true,
                     title: Text(
                       '',
                       //meal!.steps[index],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
