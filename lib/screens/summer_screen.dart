@@ -53,7 +53,7 @@ class _SummerScreenState extends State<SummerScreen> {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (ctx) => const SummerDetailScreen(),// meal: meal
+                  builder: (ctx) => SummerDetailScreen(meal: mealsHavingC10[index]),// meal: meal
                 ),
               );
             },

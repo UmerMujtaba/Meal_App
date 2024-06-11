@@ -4,8 +4,8 @@ import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
-
 class QuickScreen extends StatefulWidget {
+
   const QuickScreen({Key? key}) : super(key: key);
 
   @override
@@ -52,7 +52,7 @@ class _QuickScreenState extends State<QuickScreen> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (ctx) => const QuickDetailScreen(),// meal: meal
+                              builder: (context) => QuickDetailScreen(meal: mealsHavingC2[index]),// meal: meal
                             ),
                           );
                         },

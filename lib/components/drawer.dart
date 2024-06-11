@@ -65,7 +65,9 @@ class _DraweerState extends State<Draweer> {
                   'Filters',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, 'filter');
+                },
               ),
               const Divider(height: 2, color: Colors.black),
             ],

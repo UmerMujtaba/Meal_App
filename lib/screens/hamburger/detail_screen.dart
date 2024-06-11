@@ -66,7 +66,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
             Text(
               'Ingredients',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
@@ -95,7 +95,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
             Text(
               'Steps',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
