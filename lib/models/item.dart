@@ -18,11 +18,11 @@ class CategoryItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           gradient: LinearGradient(
             colors: [
-              category.color.withOpacity(0.6),
-              category.color,
+              category.color.withOpacity(0.2),
+              category.color.withOpacity(1),
             ],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: Text(
