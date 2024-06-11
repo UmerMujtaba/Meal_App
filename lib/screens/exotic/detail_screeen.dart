@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import '../../models/dummy_data.dart';
 import '../../models/meal.dart';
 
-class HamburgerDetailScreen extends StatefulWidget {
-
-  const HamburgerDetailScreen({ Key? key}) : super(key: key);
+class ExoticDetailScreen extends StatefulWidget {
+  const ExoticDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<HamburgerDetailScreen> createState() => _HamburgerDetailScreenState();
+  State<ExoticDetailScreen> createState() => _ExoticDetailScreenState();
 }
 
-class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
+class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
   Meal? meal;
 
   @override
@@ -18,7 +17,7 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
     super.initState();
 
     final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c3');
+      return meal.categories.contains('c6');
     }).toList();
 
     if (italianMeals.isNotEmpty) {
@@ -28,7 +27,6 @@ class _HamburgerDetailScreenState extends State<HamburgerDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final Meal meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(

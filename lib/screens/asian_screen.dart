@@ -15,6 +15,6 @@ class AsianScreen extends StatelessWidget {
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
-    );;
+    );
   }
 }
