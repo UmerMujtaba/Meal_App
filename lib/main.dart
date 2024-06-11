@@ -4,6 +4,7 @@ import 'package:mealapp/screens/breakfast_screen.dart';
 import 'package:mealapp/screens/exotic_screen.dart';
 import 'package:mealapp/screens/german/details_screen.dart';
 import 'package:mealapp/screens/german_screen.dart';
+import 'package:mealapp/screens/hamburger/detail_screen.dart';
 import 'package:mealapp/screens/hamburger_screen.dart';
 import 'package:mealapp/screens/italian/detail_screen.dart';
 import 'package:mealapp/screens/italian_screen.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         'quick':(context)=>const QuickScreen(),
         'quick_detail':(context)=>const QuickDetailScreen(),
         'hamburger':(context)=>const HamburgerScreen(),
+        'hamburger_detail':(context)=>const HamburgerDetailScreen(),
         'german':(context)=>const GermanScreen(),
         'german_detail':(context)=>const GermanDetailScreen(),
         'light':(context)=>const LightScreen(),
