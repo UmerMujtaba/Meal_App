@@ -6,8 +6,6 @@ import '../models/dummy_data.dart';
 import '../models/item.dart';
 
 class HomeScreen extends StatefulWidget {
-
-
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,7 +14,38 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void onCategorySelected(Category category) {
-    print('Selected Category: ${category.title}');
+    if (category.id == 'c1')
+    {
+      Navigator.pushNamed(context, 'italian');
+    }
+    else if (category.id == 'c2')
+    {
+      Navigator.pushNamed(context, 'quick');
+    }
+    else if (category.id == 'c3')
+    {
+      Navigator.pushNamed(context, 'hamburger');
+    }
+    else if (category.id == 'c4')
+    {
+      Navigator.pushNamed(context, 'german');
+    }
+    else if (category.id == 'c5')
+    {
+      Navigator.pushNamed(context, 'light');
+    }
+    else if (category.id == 'c6')
+    {
+      Navigator.pushNamed(context, 'exotic');
+    }
+    else if (category.id == 'c7')
+    {
+      Navigator.pushNamed(context, 'breakfast');
+    }
+    else if(category.id == 'c8')
+    {
+      Navigator.pushNamed(context, 'asian');
+    }
   }
 
   @override
@@ -25,16 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        // leading: Icon(
-        //   Icons.menu,
-        //   size: 25,
-        //   color: Colors.white,
-        // ),
         backgroundColor: Colors.black54,
         title: const Text(
           'Category',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
+        // leading: Icon(
+        //   Icons.menu,
+        //   size: 25,
+        //   color: Colors.white,
+        // ),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
