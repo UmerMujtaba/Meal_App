@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/screens/light/detail_screen.dart';
 import 'package:mealapp/screens/quick/detail_screen.dart';
 import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
@@ -52,7 +53,7 @@ class _LightScreenState extends State<LightScreen> {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (ctx) => const QuickDetailScreen(),// meal: meal
+                  builder: (ctx) => LightDetailScreen(meal: mealsHavingC5[index]),// meal: meal
                 ),
               );
             },

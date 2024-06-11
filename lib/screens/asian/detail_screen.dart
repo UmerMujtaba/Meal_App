@@ -64,7 +64,7 @@ class _AsianDetailScreenState extends State<AsianDetailScreen> {
             Text(
               'Ingredients',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
@@ -93,7 +93,7 @@ class _AsianDetailScreenState extends State<AsianDetailScreen> {
             Text(
               'Steps',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[400],
                 fontSize: 26,
               ),
             ),

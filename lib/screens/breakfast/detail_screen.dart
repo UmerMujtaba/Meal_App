@@ -64,7 +64,7 @@ class _BreakfastDetailScreenState extends State<BreakfastDetailScreen> {
             Text(
               'Ingredients',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
@@ -93,7 +93,7 @@ class _BreakfastDetailScreenState extends State<BreakfastDetailScreen> {
             Text(
               'Steps',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),

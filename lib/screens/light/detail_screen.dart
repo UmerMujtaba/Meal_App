@@ -3,7 +3,8 @@ import '../../data/dummy_data.dart';
 import '../../data/meal.dart';
 
 class LightDetailScreen extends StatefulWidget {
-  const LightDetailScreen({Key? key}) : super(key: key);
+  final Meal meal;
+  const LightDetailScreen({Key? key, required this.meal}) : super(key: key);
 
   @override
   State<LightDetailScreen> createState() => _LightDetailScreenState();
@@ -27,13 +28,14 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final meal = widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: Text(
-          meal!.title,
+          meal.title,
           style: const TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
@@ -55,7 +57,7 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
         child: Column(
           children: <Widget>[
             Image.network(
-              meal!.imageUrl,
+              meal.imageUrl,
               width: double.infinity,
               height: 300,
               fit: BoxFit.fill,
@@ -64,13 +66,13 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
             Text(
               'Ingredients',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: meal!.ingredients.length,
+              itemCount: meal.ingredients.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
@@ -78,7 +80,7 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      meal!.ingredients[index],
+                      meal.ingredients[index],
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -93,13 +95,13 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
             Text(
               'Steps',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: meal!.steps.length,
+              itemCount: meal.steps.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -107,7 +109,7 @@ class _LightDetailScreenState extends State<LightDetailScreen> {
                   child: ListTile(
                     dense: true,
                     title: Text(
-                      meal!.steps[index],
+                      meal.steps[index],
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,

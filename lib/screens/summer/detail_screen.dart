@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import '../../data/meal.dart';
 class SummerDetailScreen extends StatefulWidget {
-  // final Meal meal;
-  // required this.meal
-  const SummerDetailScreen({ Key? key}) : super(key: key);
+  final Meal meal;
+
+  const SummerDetailScreen({ Key? key, required this.meal}) : super(key: key);
 
   @override
   State<SummerDetailScreen> createState() => _SummerDetailScreenState();
@@ -20,16 +20,15 @@ class _SummerDetailScreenState extends State<SummerDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+final meal= widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
-        title: const Text(
-          '',
-          // meal.title,
-          style: TextStyle(color: Colors.white, fontSize: 22),
+        title: Text(
+          meal.title,
+          style: const TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
           IconButton(
@@ -50,7 +49,7 @@ class _SummerDetailScreenState extends State<SummerDetailScreen> {
         child: Column(
           children: <Widget>[
             Image.network(
-              "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg",
+              meal.imageUrl,
               width: double.infinity,
               height: 300,
               fit: BoxFit.fill,
@@ -59,23 +58,22 @@ class _SummerDetailScreenState extends State<SummerDetailScreen> {
             Text(
               'Ingredients',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
             ListView.builder(
               shrinkWrap: true,
-              //itemCount: meal!.ingredients.length,
+              itemCount: meal.ingredients.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
                   // Reduce space between tiles
-                  child: const ListTile(
+                  child: ListTile(
                     dense: true,
                     title: Text(
-                      '',
-                      //meal!.ingredients[index],
-                      style: TextStyle(
+                      meal.ingredients[index],
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
@@ -89,23 +87,22 @@ class _SummerDetailScreenState extends State<SummerDetailScreen> {
             Text(
               'Steps',
               style: TextStyle(
-                color: Colors.brown[300],
+                color: Colors.orange[500],
                 fontSize: 26,
               ),
             ),
             ListView.builder(
               shrinkWrap: true,
-              // itemCount: meal!.steps.length,
+              itemCount: meal.steps.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   // Reduce space between tiles
-                  child: const ListTile(
+                  child: ListTile(
                     dense: true,
                     title: Text(
-                      '',
-                      //meal!.steps[index],
-                      style: TextStyle(
+                      meal.steps[index],
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
