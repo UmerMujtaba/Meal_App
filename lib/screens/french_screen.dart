@@ -4,14 +4,14 @@ import '../models/drawer.dart';
 import '../models/dummy_data.dart';
 import '../models/meal.dart';
 
-class AsianScreen extends StatefulWidget {
-  const AsianScreen({Key? key}) : super(key: key);
+class FrenchScreen extends StatefulWidget {
+  const FrenchScreen({Key? key}) : super(key: key);
 
   @override
-  State<AsianScreen> createState() => _AsianScreenState();
+  State<FrenchScreen> createState() => _FrenchScreenState();
 }
 
-class _AsianScreenState extends State<AsianScreen> {
+class _FrenchScreenState extends State<FrenchScreen> {
   Meal? meal;
 
   @override
@@ -19,7 +19,7 @@ class _AsianScreenState extends State<AsianScreen> {
     super.initState();
 
     final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c8');
+      return meal.categories.contains('c9');
     }).toList();
 
     if (italianMeals.isNotEmpty) {
@@ -35,7 +35,7 @@ class _AsianScreenState extends State<AsianScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Asian',
+          'French',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
@@ -49,7 +49,7 @@ class _AsianScreenState extends State<AsianScreen> {
           : Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () => Navigator.pushNamed(context, 'asian_detail'),
+          onTap: () => Navigator.pushNamed(context, 'french_detail'),
           child: Card(
             elevation: 5,
             shadowColor: Colors.white,

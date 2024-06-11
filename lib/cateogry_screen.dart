@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../models/bottom_bar.dart';
-import '../models/category.dart';
-import '../models/drawer.dart';
-import '../models/dummy_data.dart';
-import '../models/item.dart';
+import 'models/bottom_bar.dart';
+import 'models/category.dart';
+import 'models/drawer.dart';
+import 'models/dummy_data.dart';
+import 'models/item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,6 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
     else if(category.id == 'c8')
     {
       Navigator.pushNamed(context, 'asian');
+    }
+    else if(category.id == 'c9')
+    {
+      Navigator.pushNamed(context, 'french');
+    }
+    else
+    {
+      Navigator.pushNamed(context, 'summer');
     }
   }
 

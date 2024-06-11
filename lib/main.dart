@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/screens/asian/detail_screen.dart';
 import 'package:mealapp/screens/asian_screen.dart';
+import 'package:mealapp/screens/breakfast/detail_screen.dart';
 import 'package:mealapp/screens/breakfast_screen.dart';
 import 'package:mealapp/screens/exotic/detail_screeen.dart';
 import 'package:mealapp/screens/exotic_screen.dart';
+import 'package:mealapp/screens/french/detail_screen.dart';
+import 'package:mealapp/screens/french_screen.dart';
 import 'package:mealapp/screens/german/details_screen.dart';
 import 'package:mealapp/screens/german_screen.dart';
 import 'package:mealapp/screens/hamburger/detail_screen.dart';
@@ -13,7 +17,9 @@ import 'package:mealapp/screens/light/detail_screen.dart';
 import 'package:mealapp/screens/light_screen.dart';
 import 'package:mealapp/screens/quick/detail_screen.dart';
 import 'package:mealapp/screens/quick_screen.dart';
-import 'screens/cateogry_screen.dart';
+import 'package:mealapp/screens/summer/detail_screen.dart';
+import 'package:mealapp/screens/summer_screen.dart';
+import 'cateogry_screen.dart';
 import 'screens/favorites_screen.dart';
 
 void main() {
@@ -44,8 +50,13 @@ class MyApp extends StatelessWidget {
         'exotic':(context)=>const ExoticScreen(),
         'exotic_detail':(context)=>const ExoticDetailScreen(),
         'breakfast':(context)=>const BreakfastScreen(),
+        'breakfast_detail':(context)=>const BreakfastDetailScreen(),
         'asian':(context)=>const AsianScreen(),
-
+        'asian_detail': (context)=>const AsianDetailScreen(),
+        'french':(context)=>const FrenchScreen(),
+        'french_detail':(context)=>const FrenchDetailScreen(),
+        'summer':(context)=>const SummerScreen(),
+        'summer_detail':(context)=>const SummerDetailScreen(),
       },
     );
   }

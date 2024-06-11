@@ -32,7 +32,7 @@ class _HamburgerScreenState extends State<HamburgerScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Hamburger Screen',
+          'Hamburger',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),

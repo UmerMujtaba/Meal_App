@@ -32,7 +32,7 @@ class _QuickScreenState extends State<QuickScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Quick Screen',
+          'Quick',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
