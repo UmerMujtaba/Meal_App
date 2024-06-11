@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../../data/dummy_data.dart';
 import '../../data/meal.dart';
 
-class ExoticDetailScreen extends StatefulWidget {
-  const ExoticDetailScreen({Key? key}) : super(key: key);
+class FrenchDetailScreen extends StatefulWidget {
+  const FrenchDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<ExoticDetailScreen> createState() => _ExoticDetailScreenState();
+  State<FrenchDetailScreen> createState() => _FrenchDetailScreenState();
 }
 
-class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
+class _FrenchDetailScreenState extends State<FrenchDetailScreen> {
   Meal? meal;
 
   @override
@@ -17,7 +17,7 @@ class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
     super.initState();
 
     final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c6');
+      return meal.categories.contains('c9');
     }).toList();
 
     if (italianMeals.isNotEmpty) {

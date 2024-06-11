@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/screens/quick/detail_screen.dart';
-import '../models/bottom_bar.dart';
-import '../models/drawer.dart';
-import '../models/dummy_data.dart';
-import '../models/meal.dart';
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
+import '../data/dummy_data.dart';
+import '../data/meal.dart';
 
 class QuickScreen extends StatefulWidget {
   const QuickScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _QuickScreenState extends State<QuickScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Quick Screen',
+          'Quick',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),

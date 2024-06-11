@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/bottom_bar.dart';
-import '../models/drawer.dart';
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);

@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
-import '../../data/dummy_data.dart';
-import '../../data/meal.dart';
 
-class ExoticDetailScreen extends StatefulWidget {
-  const ExoticDetailScreen({Key? key}) : super(key: key);
+class SummerDetailScreen extends StatefulWidget {
+  // final Meal meal;
+  // required this.meal
+  const SummerDetailScreen({ Key? key}) : super(key: key);
 
   @override
-  State<ExoticDetailScreen> createState() => _ExoticDetailScreenState();
+  State<SummerDetailScreen> createState() => _SummerDetailScreenState();
 }
 
-class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
-  Meal? meal;
+class _SummerDetailScreenState extends State<SummerDetailScreen> {
+
 
   @override
   void initState() {
     super.initState();
 
-    final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c6');
-    }).toList();
-
-    if (italianMeals.isNotEmpty) {
-      meal = italianMeals[0];
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
-        title: Text(
-          meal!.title,
-          style: const TextStyle(color: Colors.white, fontSize: 22),
+        title: const Text(
+          '',
+          // meal.title,
+          style: TextStyle(color: Colors.white, fontSize: 22),
         ),
         actions: [
           IconButton(
@@ -55,7 +50,7 @@ class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
         child: Column(
           children: <Widget>[
             Image.network(
-              meal!.imageUrl,
+              "https://images.pexels.com/photos/7218637/pexels-photo-7218637.jpeg",
               width: double.infinity,
               height: 300,
               fit: BoxFit.fill,
@@ -70,16 +65,17 @@ class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: meal!.ingredients.length,
+              //itemCount: meal!.ingredients.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 100),
                   // Reduce space between tiles
-                  child: ListTile(
+                  child: const ListTile(
                     dense: true,
                     title: Text(
-                      meal!.ingredients[index],
-                      style: const TextStyle(
+                      '',
+                      //meal!.ingredients[index],
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),
@@ -99,16 +95,17 @@ class _ExoticDetailScreenState extends State<ExoticDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: meal!.steps.length,
+              // itemCount: meal!.steps.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 50),
                   // Reduce space between tiles
-                  child: ListTile(
+                  child: const ListTile(
                     dense: true,
                     title: Text(
-                      meal!.steps[index],
-                      style: const TextStyle(
+                      '',
+                      //meal!.steps[index],
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
                       ),

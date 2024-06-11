@@ -4,14 +4,14 @@ import '../components/drawer.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 
-class ExoticScreen extends StatefulWidget {
-  const ExoticScreen({Key? key}) : super(key: key);
+class FrenchScreen extends StatefulWidget {
+  const FrenchScreen({Key? key}) : super(key: key);
 
   @override
-  State<ExoticScreen> createState() => _ExoticScreenState();
+  State<FrenchScreen> createState() => _FrenchScreenState();
 }
 
-class _ExoticScreenState extends State<ExoticScreen> {
+class _FrenchScreenState extends State<FrenchScreen> {
   Meal? meal;
 
   @override
@@ -19,7 +19,7 @@ class _ExoticScreenState extends State<ExoticScreen> {
     super.initState();
 
     final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c6');
+      return meal.categories.contains('c9');
     }).toList();
 
     if (italianMeals.isNotEmpty) {
@@ -35,7 +35,7 @@ class _ExoticScreenState extends State<ExoticScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Exotic',
+          'French',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
@@ -49,7 +49,7 @@ class _ExoticScreenState extends State<ExoticScreen> {
           : Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () => Navigator.pushNamed(context, 'exotic_detail'),
+          onTap: () => Navigator.pushNamed(context, 'french_detail'),
           child: Card(
             elevation: 5,
             shadowColor: Colors.white,

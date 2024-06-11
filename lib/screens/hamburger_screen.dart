@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/bottom_bar.dart';
-import '../models/drawer.dart';
-import '../models/dummy_data.dart';
-import '../models/meal.dart';
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
+import '../data/dummy_data.dart';
+import '../data/meal.dart';
 
 class HamburgerScreen extends StatefulWidget {
   const HamburgerScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _HamburgerScreenState extends State<HamburgerScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Hamburger Screen',
+          'Hamburger',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),

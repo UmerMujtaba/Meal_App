@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/screens/quick/detail_screen.dart';
+import 'package:mealapp/screens/summer/detail_screen.dart';
 import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 
-class LightScreen extends StatefulWidget {
-  const LightScreen({Key? key}) : super(key: key);
+class SummerScreen extends StatefulWidget {
+  const SummerScreen({Key? key}) : super(key: key);
 
   @override
-  State<LightScreen> createState() => _LightScreenState();
+  State<SummerScreen> createState() => _SummerScreenState();
 }
 
-class _LightScreenState extends State<LightScreen> {
+class _SummerScreenState extends State<SummerScreen> {
 
-  List<Meal> mealsHavingC5 = [];
+  List<Meal> mealsHavingC10 = [];
   @override
   void initState() {
     super.initState();
 
-    mealsHavingC5 = dummyMeals.where((meal) {
-      return meal.categories.contains('c5');
+    mealsHavingC10 = dummyMeals.where((meal) {
+      return meal.categories.contains('c10');
     }).toList();
   }
 
@@ -32,11 +33,11 @@ class _LightScreenState extends State<LightScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: const Text(
-          'Light & Lovely',
+          'Quick',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
-      body: mealsHavingC5.isEmpty
+      body: mealsHavingC10.isEmpty
           ? const Center(
         child: Text(
           'No Italian meals available.',
@@ -44,15 +45,15 @@ class _LightScreenState extends State<LightScreen> {
         ),
       )
           : ListView.builder(
-        itemCount: mealsHavingC5.length,
+        itemCount: mealsHavingC10.length,
         padding: const EdgeInsets.all(8.0),
         itemBuilder: (context, index) {
-          final meal = mealsHavingC5[index];
+          final meal = mealsHavingC10[index];
           return InkWell(
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (ctx) => const QuickDetailScreen(),// meal: meal
+                  builder: (ctx) => const SummerDetailScreen(),// meal: meal
                 ),
               );
             },
