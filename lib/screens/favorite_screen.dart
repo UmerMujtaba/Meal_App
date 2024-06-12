@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
+import '../data/meal.dart';
 
-class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  final Meal meal;
+  const FavoriteScreen({Key? key, required this.meal}) : super(key: key);
 
   @override
-  State<FirstScreen> createState() => _FirstScreenState();
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
+    final meal=widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -23,10 +26,15 @@ class _FirstScreenState extends State<FirstScreen> {
           style: TextStyle(color: Colors.white, fontSize: 22),
         ),
       ),
+      body: const Column(
+        children: [
+          Text('agaagga',style: TextStyle(color: Colors.white,fontSize: 28),)
+        ],
+      ),
       drawer: const Draweer(
         title: 'ok',
       ),
-      bottomNavigationBar: const BottomNavigationBarExample(),
+      bottomNavigationBar: BottomNavigationBarExample(meal: meal),
     );
   }
 }
