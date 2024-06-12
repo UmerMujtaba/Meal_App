@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/filter_screen.dart';
+import '../filter/filter_screen.dart';
 
 class Draweer extends StatefulWidget {
   const Draweer({super.key, required this.title});

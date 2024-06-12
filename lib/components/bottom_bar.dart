@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/models/cateogry_screen.dart';
 import 'package:mealapp/screens/favorite_screen.dart';
 
 import '../data/meal.dart';
-import 'drawer.dart';
 
-class BottomNavigationBarExample extends StatefulWidget {
-  final Meal meal;
-  const BottomNavigationBarExample({super.key, required this.meal});
+
+class BottomBar extends StatefulWidget {
+  // final Meal check;
+  // required this.meal
+  const BottomBar({super.key,});
 
   @override
-  State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
+  State<BottomBar> createState() =>
+      _BottomBarState();
 }
 
-class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample> {
-  
+class _BottomBarState extends State<BottomBar> {
+bool isSelected=false;
+
   int _selectedTabIndex = 0;
   void _onTabTapped(int index) async {
     if (index == 0) {
-      Navigator.pushNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/');
     }
     if (index == 1) {
-      Navigator.pushNamed(context, '/first');
+      Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => FavoriteScreen()));
     }
     setState(() {
       _selectedTabIndex = index;
@@ -33,7 +36,7 @@ class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample>
 
   @override
   Widget build(BuildContext context) {
-    final meal= widget.meal;
+
 
 
     return SizedBox(

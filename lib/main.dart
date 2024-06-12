@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/components/drawer_list_item.dart';
+import 'package:mealapp/filter/filter_list_item.dart';
 import 'data/dummy_data.dart';
 import 'data/meal.dart';
 
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     final meal = widget.meal;
 
     return MaterialApp(
-      home: HomeScreen(meal: meal),
+      home: CategoryScreen(meal: meal),
     );
   }
 }
