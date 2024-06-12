@@ -1,63 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/screens/meal_screen.dart';
 import '../components/bottom_bar.dart';
 import '../data/category.dart';
 import '../components/drawer.dart';
 import '../data/dummy_data.dart';
-import 'item.dart';
+import '../data/meal.dart';
+import 'category_item.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+
+  final Meal meal;
+  const HomeScreen({Key? key, required this.meal}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void onCategorySelected(Category category) {
-    if (category.id == 'c1')
-    {
-      Navigator.pushNamed(context, 'italian');
-    }
-    else if (category.id == 'c2')
-    {
-      Navigator.pushNamed(context, 'quick');
-    }
-    else if (category.id == 'c3')
-    {
-      Navigator.pushNamed(context, 'hamburger');
-    }
-    else if (category.id == 'c4')
-    {
-      Navigator.pushNamed(context, 'german');
-    }
-    else if (category.id == 'c5')
-    {
-      Navigator.pushNamed(context, 'light');
-    }
-    else if (category.id == 'c6')
-    {
-      Navigator.pushNamed(context, 'exotic');
-    }
-    else if (category.id == 'c7')
-    {
-      Navigator.pushNamed(context, 'breakfast');
-    }
-    else if(category.id == 'c8')
-    {
-      Navigator.pushNamed(context, 'asian');
-    }
-    else if(category.id == 'c9')
-    {
-      Navigator.pushNamed(context, 'french');
-    }
-    else
-    {
-      Navigator.pushNamed(context, 'summer');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final categories = [
+      {'id': 'c1', 'title': 'Italian'},
+      {'id': 'c2', 'title': 'Quick & Easy'},
+      {'id': 'c3', 'title': 'Hamburgers'},
+      {'id': 'c4', 'title': 'German'},
+      {'id': 'c5', 'title': 'Light& Lovely'},
+      {'id': 'c6', 'title': 'Exotic'},
+      {'id': 'c7', 'title': 'Breakfast'},
+      {'id': 'c8', 'title': 'Asian'},
+      {'id': 'c9', 'title': 'French'},
+      {'id': 'c10', 'title': 'Summer'},
+    ];
+    final meal= widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -67,11 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
           'Category',
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
-        // leading: Icon(
-        //   Icons.menu,
-        //   size: 25,
-        //   color: Colors.white,
-        // ),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),
@@ -87,7 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
             final category = availableCategories[index];
             return CategoryItem(
               category,
-              onPressed: () => onCategorySelected(category),
+              onPressed: () =>  Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MealScreen(category: category, meal: meal,),
+            ),
+            ),
             );
           },
         ),
@@ -95,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const Draweer(
         title: 'ok',
       ),
-      bottomNavigationBar: const BottomNavigationBarExample(),
+      bottomNavigationBar: BottomNavigationBarExample(meal: meal,),
     );
   }
 }

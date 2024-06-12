@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/filter_screen.dart';
+
 class Draweer extends StatefulWidget {
   const Draweer({super.key, required this.title});
 
@@ -66,7 +68,9 @@ class _DraweerState extends State<Draweer> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(context, 'filter');
+                  Navigator.of(context).push(
+                      MaterialPageRoute(
+                      builder: (context) => const FilterScreen()));
                 },
               ),
               const Divider(height: 2, color: Colors.black),

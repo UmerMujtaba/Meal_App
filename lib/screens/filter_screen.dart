@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/list.dart';
+import '../components/drawer_list_item.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);

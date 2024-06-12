@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/models/cateogry_screen.dart';
-import '../screens/favorites_screen.dart';
+import 'package:mealapp/screens/favorite_screen.dart';
+
+import '../data/meal.dart';
 import 'drawer.dart';
 
 class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({super.key});
+  final Meal meal;
+  const BottomNavigationBarExample({super.key, required this.meal});
 
   @override
   State<BottomNavigationBarExample> createState() =>
       _BottomNavigationBarExampleState();
 }
 
-class _BottomNavigationBarExampleState
-    extends State<BottomNavigationBarExample> {
-
+class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample> {
+  
   int _selectedTabIndex = 0;
   void _onTabTapped(int index) async {
     if (index == 0) {
@@ -27,15 +29,13 @@ class _BottomNavigationBarExampleState
     });
   }
 
-  int currentTab = 0;
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const FirstScreen(),
-    const Draweer(title: 'ok'),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
+    final meal= widget.meal;
+
+
     return SizedBox(
       height: 60,
       child: Scaffold(
@@ -44,7 +44,7 @@ class _BottomNavigationBarExampleState
           //elevation: 5,
           iconSize: 24,
           selectedIconTheme:
-              const IconThemeData(color: Colors.blueAccent, size: 28),
+          const IconThemeData(color: Colors.blueAccent, size: 28),
           selectedItemColor: Colors.blueAccent,
           unselectedIconTheme: const IconThemeData(
             color: Colors.grey,

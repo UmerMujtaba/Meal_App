@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../data/dummy_data.dart';
 import '../../data/meal.dart';
-
-class LightDetailScreen extends StatefulWidget {
+class MealDetailScreen extends StatefulWidget {
   final Meal meal;
-  const LightDetailScreen({Key? key, required this.meal}) : super(key: key);
+
+  const MealDetailScreen({ Key? key, required this.meal}) : super(key: key);
 
   @override
-  State<LightDetailScreen> createState() => _LightDetailScreenState();
+  State<MealDetailScreen> createState() => _MealDetailScreenState();
 }
 
-class _LightDetailScreenState extends State<LightDetailScreen> {
-  Meal? meal;
+class _MealDetailScreenState extends State<MealDetailScreen> {
 
-  @override
-  void initState() {
-    super.initState();
-
-    final italianMeals = dummyMeals.where((meal) {
-      return meal.categories.contains('c5');
-    }).toList();
-
-    if (italianMeals.isNotEmpty) {
-      meal = italianMeals[0];
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final meal = widget.meal;
+    final meal= widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(

@@ -4,6 +4,7 @@ import '../data/category.dart';
 class CategoryItem extends StatelessWidget {
   final Category category;
   final VoidCallback onPressed;
+
   const CategoryItem(this.category,{required this.onPressed, super.key});
 
   @override
