@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:mealapp/screens/screen_detail.dart';
 import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
 import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
-import 'favorite_screen.dart';
 
 class MealScreen extends StatefulWidget {
   final Meal meal;
@@ -18,8 +18,6 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealScreen> {
-  List<Meal> favoriteMeals = [];
-
   void toggleFavorite(Meal meal) {
     setState(() {
       if (favoriteMeals.contains(meal)) {
@@ -36,22 +34,20 @@ class _MealScreenState extends State<MealScreen> {
       return meal.categories.contains(widget.category.id);
     }).toList();
 
-    final category = widget.category;
-    final meal= widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: Text(
-          category.title,
+          widget.category.title,
           style: const TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
       body: meals.isEmpty
           ? const Center(
         child: Text(
-          'No meals available for this category.',
+          'No meals available.',
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       )
@@ -60,7 +56,6 @@ class _MealScreenState extends State<MealScreen> {
         itemBuilder: (ctx, index) {
           final meal = meals[index];
           final isFavorite = favoriteMeals.contains(meal);
-
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
@@ -197,7 +192,7 @@ class _MealScreenState extends State<MealScreen> {
       drawer: const Draweer(
         title: 'ok',
       ),
-      // bottomNavigationBar: BottomBar(meal: meal, category: category,),
+      //bottomNavigationBar: BottomBar(),
     );
   }
 }
