@@ -6,17 +6,18 @@ import '../components/drawer.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 import 'category_item.dart';
-
-class HomeScreen extends StatefulWidget {
+import '../filter/filter_list_item.dart';
+import '../filter/filter_screen.dart';
+class CategoryScreen extends StatefulWidget {
 
   final Meal meal;
-  const HomeScreen({Key? key, required this.meal}) : super(key: key);
+  const CategoryScreen({Key? key, required this.meal}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     final categories = [
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const Draweer(
         title: 'ok',
       ),
-      bottomNavigationBar: BottomNavigationBarExample(meal: meal,),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

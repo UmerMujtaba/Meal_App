@@ -1,44 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/screens/favorite_screen.dart';
 import '../../data/meal.dart';
+
 class MealDetailScreen extends StatefulWidget {
   final Meal meal;
 
-  const MealDetailScreen({ Key? key, required this.meal}) : super(key: key);
+  const MealDetailScreen({Key? key, required this.meal}) : super(key: key);
 
   @override
   State<MealDetailScreen> createState() => _MealDetailScreenState();
 }
 
 class _MealDetailScreenState extends State<MealDetailScreen> {
-
+  bool isSelected = false;
+  // void favorite(bool value) {
+  //   setState(() {
+  //     isSelected != isSelected;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final meal= widget.meal;
+   Meal check;
+    final meal = widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: Colors.black54,
-        title: Text(
-          meal.title,
-          style: const TextStyle(color: Colors.white, fontSize: 22),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {
-
-              });
-            },
-            icon: const Icon(
-              Icons.star_border,
-              size: 26,
-              color: Colors.white,
-            ),
-          )
-        ],
-      ),
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: Colors.black54,
+          title: Text(
+            meal.title,
+            style: const TextStyle(color: Colors.white, fontSize: 22),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    isSelected=!isSelected;
+                     check=meal;
+                     print(check.title);
+                    // Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //     builder: (context) => const FavoriteScreen()));
+                  });
+                },
+                icon: Icon(
+                  isSelected ? Icons.favorite : Icons.favorite_border,
+                  color: isSelected? Colors.red: null,
+                )),
+          ]),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

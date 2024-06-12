@@ -5,6 +5,8 @@ import '../components/drawer.dart';
 import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
+import '../filter/filter_list_item.dart';
+import '../filter/filter_screen.dart';
 
 class MealScreen extends StatefulWidget {
   final Meal meal;
@@ -22,7 +24,7 @@ class _MealScreenState extends State<MealScreen> {
     final meals = dummyMeals.where((meal) {
       return meal.categories.contains(widget.category.id);
     }).toList();
-
+    // List<MyListItems> selectedMeals = dummyMeals.where(() => meal.isSelected).toList();
     final meal = widget.meal;
     final category = widget.category;
     return Scaffold(
@@ -178,7 +180,7 @@ class _MealScreenState extends State<MealScreen> {
       drawer: const Draweer(
         title: 'ok',
       ),
-      bottomNavigationBar: BottomNavigationBarExample(meal: meal),
+      bottomNavigationBar: BottomBar(),
     );
   }
 }

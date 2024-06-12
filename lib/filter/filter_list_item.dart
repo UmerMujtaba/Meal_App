@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyListItems extends StatefulWidget {
-  final String title;
+  final String name;
 
-  const MyListItems({Key? key, required this.title}) : super(key: key);
+  const MyListItems({Key? key, required this.name}) : super(key: key);
 
   @override
   State<MyListItems> createState() => _MyListItemsState();
@@ -24,7 +24,7 @@ class _MyListItemsState extends State<MyListItems> {
     return ListTile(
       tileColor: isSelected ? Colors.brown : Colors.black54,
       title: Text(
-        widget.title,
+        widget.name,
         style: const TextStyle(color: Colors.white,fontSize: 20),
       ),
       subtitle: Text(
