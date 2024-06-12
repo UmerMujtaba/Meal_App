@@ -1,59 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/data/category.dart';
+import 'package:mealapp/data/meal.dart';
 import 'package:mealapp/screens/favorite_screen.dart';
-
-import '../data/meal.dart';
-
+import 'package:mealapp/screens/meal_screen.dart';
+import '../components/drawer.dart';
 
 class BottomBar extends StatefulWidget {
-  // final Meal check;
-  // required this.meal
-  const BottomBar({super.key,});
+  final Meal meal;
+  final Category category;
+
+  const BottomBar({
+    Key? key,
+    required this.meal,
+    required this.category,
+  }) : super(key: key);
 
   @override
-  State<BottomBar> createState() =>
-      _BottomBarState();
+  State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-bool isSelected=false;
-
   int _selectedTabIndex = 0;
-  void _onTabTapped(int index) async {
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/');
-    }
-    if (index == 1) {
-      // Navigator.of(context).push(
-      //     MaterialPageRoute(
-      //         builder: (context) => FavoriteScreen()));
-    }
+  late List<Widget> screens;
+
+  @override
+  void initState() {
+    super.initState();
+    screens = [
+      MealScreen(category: widget.category, meal: widget.meal),
+      const FavoriteScreen(),
+      const Draweer(title: 'ok'),
+    ];
+  }
+
+  void _onTabTapped(int index) {
     setState(() {
       _selectedTabIndex = index;
     });
+
+    if (index == 1) {
+      Navigator.pushNamed(context, '/favorite'); // Replace '/first' with your route name for FavoriteScreen
+    }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return SizedBox(
       height: 60,
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
-          //elevation: 5,
+          elevation: 8,
           iconSize: 24,
+          backgroundColor: Colors.black,
           selectedIconTheme:
-          const IconThemeData(color: Colors.blueAccent, size: 28),
+              const IconThemeData(color: Colors.blueAccent, size: 28),
           selectedItemColor: Colors.blueAccent,
-          unselectedIconTheme: const IconThemeData(
-            color: Colors.grey,
-          ),
+          unselectedIconTheme: const IconThemeData(color: Colors.grey),
           unselectedItemColor: Colors.white,
-
+          currentIndex: _selectedTabIndex,
+          onTap: _onTabTapped,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.category),
@@ -64,8 +69,11 @@ bool isSelected=false;
               label: 'Favorites',
             ),
           ],
-          currentIndex: _selectedTabIndex,
-          onTap: _onTabTapped,
+        ),
+        drawer: const Draweer(title: 'ok'),
+        body: IndexedStack(
+          index: _selectedTabIndex,
+          children: screens,
         ),
       ),
     );
