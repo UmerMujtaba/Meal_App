@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/screens/screen_detail.dart';
 import '../../data/meal.dart';
 import '../components/drawer.dart';
-List<Meal> favoriteMeals = [];
-class FavoriteScreen extends StatelessWidget {
 
+class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(

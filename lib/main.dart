@@ -1,32 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/filter/filter_list_item.dart';
-import 'data/dummy_data.dart';
-import 'data/meal.dart';
+import 'package:mealapp/data/dummy_data.dart';
+import 'package:mealapp/data/meal.dart';
+
+import 'package:mealapp/screens/favorite_screen.dart';
 
 import 'models/cateogry_screen.dart';
-import 'screens/favorite_screen.dart';
 
 void main() {
-  // Initialize a dummy meal for demonstration purposes
-  final Meal meal = dummyMeals.first;
-  runApp(MyApp(meal: meal));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  final Meal meal;
-  const MyApp({super.key, required this.meal});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  int _selectedTabIndex = 0;
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final meal = widget.meal;
-
     return MaterialApp(
-      home: CategoryScreen(meal: meal),
+      title: 'Meal App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => CategoryScreen(meal: dummyMeals.first, category: availableCategories.first),
+        '/favorite': (context) => const FavoriteScreen(),
+      },
     );
   }
 }
