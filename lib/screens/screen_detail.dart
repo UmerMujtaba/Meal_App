@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/screens/favorite_screen.dart';
 import '../../data/meal.dart';
+import '../data/category.dart';
+import '../data/dummy_data.dart';
 
 class MealDetailScreen extends StatefulWidget {
   final Meal meal;
+  final Function(Meal) onToggleFavorite;
+  final bool isFavorite;
 
-  const MealDetailScreen({Key? key, required this.meal}) : super(key: key);
+
+  const MealDetailScreen({ Key? key,
+    required this.meal,
+    required this.onToggleFavorite,
+    required this.isFavorite,}) : super(key: key);
 
   @override
   State<MealDetailScreen> createState() => _MealDetailScreenState();
 }
 
 class _MealDetailScreenState extends State<MealDetailScreen> {
-  bool isSelected = false;
-  // void favorite(bool value) {
-  //   setState(() {
-  //     isSelected != isSelected;
-  //   });
-  // }
+  late bool isSelected;
+
+  @override
+  void initState(){
+    super.initState();
+
+    isSelected=widget.isFavorite;
+  }
 
   @override
   Widget build(BuildContext context) {
-   Meal check;
     final meal = widget.meal;
     return Scaffold(
       backgroundColor: Colors.black54,
@@ -36,12 +45,8 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
             IconButton(
                 onPressed: () {
                   setState(() {
-                    isSelected=!isSelected;
-                     check=meal;
-                     print(check.title);
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //     builder: (context) => const FavoriteScreen()));
+                    isSelected = !isSelected;
+                    widget.onToggleFavorite(meal);
                   });
                 },
                 icon: Icon(

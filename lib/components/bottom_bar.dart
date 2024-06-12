@@ -23,9 +23,9 @@ bool isSelected=false;
       Navigator.pushReplacementNamed(context, '/');
     }
     if (index == 1) {
-      Navigator.of(context).push(
-          MaterialPageRoute(
-              builder: (context) => FavoriteScreen()));
+      // Navigator.of(context).push(
+      //     MaterialPageRoute(
+      //         builder: (context) => FavoriteScreen()));
     }
     setState(() {
       _selectedTabIndex = index;

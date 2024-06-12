@@ -5,9 +5,8 @@ import '../components/drawer.dart';
 import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
-import '../filter/filter_list_item.dart';
-import '../filter/filter_screen.dart';
-
+import 'favorite_screen.dart';
+// List<Meal> favoriteMeals = [];
 class MealScreen extends StatefulWidget {
   final Meal meal;
   final Category category;
@@ -19,6 +18,16 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealScreen> {
+  void toggleFavorite(Meal meal) {
+    setState(() {
+      if (favoriteMeals.contains(meal)) {
+        favoriteMeals.remove(meal);
+      } else {
+        favoriteMeals.add(meal);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final meals = dummyMeals.where((meal) {
@@ -48,12 +57,18 @@ class _MealScreenState extends State<MealScreen> {
               itemCount: meals.length,
               itemBuilder: (ctx, index) {
                 final meal = meals[index];
+                final isFavorite = favoriteMeals.contains(meal);
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => MealDetailScreen(meal: meal),
+                        builder: (context) => MealDetailScreen(
+                          meal: meal,
+                          onToggleFavorite: toggleFavorite,
+                          isFavorite: isFavorite,
+                        ),
                       ),
                     ),
                     child: Card(
