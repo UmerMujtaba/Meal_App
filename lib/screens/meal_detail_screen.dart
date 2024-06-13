@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../data/meal.dart';
+
+
+
 List<Meal> favoriteMeals = [];
 class MealDetailScreen extends StatefulWidget {
   final Meal meal;
@@ -73,6 +76,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: meal.ingredients.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
@@ -101,6 +105,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: meal.steps.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(

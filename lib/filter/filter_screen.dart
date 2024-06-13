@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'filter_list_item.dart';
+import 'filter_list_item.dart'; // Adjust the import to the correct path if needed
 import '../components/drawer.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -11,9 +11,23 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   final List<String> titles = ['Gluten-Free', 'Lactose-Free', 'Vegan-Free'];
+  late List<bool> isSelectedList;
+
+  @override
+  void initState() {
+    super.initState();
+    isSelectedList = List<bool>.filled(titles.length, false);
+  }
+
+  void updateSelected(int index, bool isSelected) {
+    setState(() {
+      isSelectedList[index] = isSelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(isSelectedList);
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -32,7 +46,13 @@ class _FilterScreenState extends State<FilterScreen> {
             itemCount: titles.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return MyListItems(name: titles[index]);
+              return MyListItems(
+                name: titles[index],
+                isSelected: isSelectedList[index],
+                onSelectedChange: (isSelected) {
+                  updateSelected(index, isSelected);
+                },
+              );
             },
           ),
         ),
@@ -40,3 +60,4 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 }
+

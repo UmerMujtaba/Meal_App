@@ -10,6 +10,7 @@ import 'category_item.dart';
 class CategoryScreen extends StatefulWidget {
   final Meal meal;
 final Category category;
+
   const CategoryScreen({Key? key, required this.meal, required this.category, }) : super(key: key);
 
   @override

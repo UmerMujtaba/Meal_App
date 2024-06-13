@@ -66,7 +66,9 @@ class _DraweerState extends State<Draweer> {
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   onTap: () {
-                    Navigator.of(context).push(
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
                         MaterialPageRoute(
                             builder: (context) => CategoryScreen(meal: widget.meal, category: widget.category)));
                   },

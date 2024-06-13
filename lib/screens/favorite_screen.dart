@@ -9,6 +9,7 @@ import '../data/meal.dart';
 class FavoriteScreen extends StatefulWidget {
   final Meal meal;
   final Category category;
+
   const FavoriteScreen({Key? key, required this.meal, required this.category}) : super(key: key);
 
   @override
