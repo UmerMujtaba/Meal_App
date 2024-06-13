@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/data/category.dart';
+import 'package:mealapp/data/meal.dart';
 import 'package:mealapp/screens/meal_screen.dart';
-import '../components/bottom_bar.dart';
-import '../data/category.dart';
 import '../components/drawer.dart';
 import '../data/dummy_data.dart';
-import '../data/meal.dart';
+
 import 'category_item.dart';
 
 class CategoryScreen extends StatefulWidget {
   final Meal meal;
-  final Category category;
-  const CategoryScreen({Key? key, required this.meal, required this.category}) : super(key: key);
+final Category category;
+  const CategoryScreen({Key? key, required this.meal, required this.category, }) : super(key: key);
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-
   @override
   Widget build(BuildContext context) {
     final category = widget.category;
@@ -48,17 +47,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
               category,
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => MealScreen(category: category, meal: widget.meal),
+                  builder: (context) => MealScreen(category: category, mealss: widget.meal),
                 ),
               ),
             );
           },
         ),
       ),
-      drawer: const Draweer(
-        title: 'ok',
-      ),
-      bottomNavigationBar: BottomBar(meal: widget.meal, category: widget.category,),
+      drawer: Draweer(title: 'ok', category: widget.category, meal: widget.meal),
     );
   }
 }

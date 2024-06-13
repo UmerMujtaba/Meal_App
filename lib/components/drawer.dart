@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/models/cateogry_screen.dart';
 
+import '../data/category.dart';
+import '../data/meal.dart';
 import '../filter/filter_screen.dart';
 
 class Draweer extends StatefulWidget {
-  const Draweer({super.key, required this.title});
+  final Meal meal;
+  final Category category;
+  const Draweer({super.key, required this.title, required this.meal, required this.category});
 
   final String title;
 
@@ -24,7 +29,10 @@ class _DraweerState extends State<Draweer> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width *
+        width: MediaQuery
+            .of(context)
+            .size
+            .width *
             0.75, // 75% of screen will be occupied
         child: Drawer(
           backgroundColor: Colors.brown[900],
@@ -51,18 +59,22 @@ class _DraweerState extends State<Draweer> {
                 ),
               ),
               ListTile(
-                leading:
-                    const Icon(Icons.restaurant, size: 30, color: Colors.white),
-                title: const Text(
-                  'Meals',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                onTap: () {},
+                  leading:
+                  const Icon(Icons.restaurant, size: 30, color: Colors.white),
+                  title: const Text(
+                    'Meals',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => CategoryScreen(meal: widget.meal, category: widget.category)));
+                  },
               ),
               const Divider(height: 2, color: Colors.black),
               ListTile(
                 leading:
-                    const Icon(Icons.settings, size: 30, color: Colors.white),
+                const Icon(Icons.settings, size: 30, color: Colors.white),
                 title: const Text(
                   'Filters',
                   style: TextStyle(color: Colors.white, fontSize: 20),
@@ -70,7 +82,7 @@ class _DraweerState extends State<Draweer> {
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(
-                      builder: (context) => const FilterScreen()));
+                          builder: (context) => const FilterScreen()));
                 },
               ),
               const Divider(height: 2, color: Colors.black),

@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/screens/screen_detail.dart';
-import '../../data/meal.dart';
-import '../components/drawer.dart';
+import 'package:mealapp/screens/meal_detail_screen.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+import '../components/drawer.dart';
+import '../data/category.dart';
+import '../data/meal.dart';
+
+
+class FavoriteScreen extends StatefulWidget {
+  final Meal meal;
+  final Category category;
+  const FavoriteScreen({Key? key, required this.meal, required this.category}) : super(key: key);
 
   @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  @override
   Widget build(BuildContext context) {
+    //final category = widget.category;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -150,9 +161,11 @@ class FavoriteScreen extends StatelessWidget {
           );
         },
       ),
-      drawer: const Draweer(
+      drawer:  Draweer(
         title: 'ok',
+          category: widget.category, meal: widget.meal
       ),
+      // bottomNavigationBar: BottomBar(meal: widget.meal, category: widget.category,),
     );
   }
 }
