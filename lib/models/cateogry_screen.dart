@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/data/category.dart';
-import 'package:mealapp/data/meal.dart';
-import 'package:mealapp/screens/meal_screen.dart';
+import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
+import '../data/category.dart';
 import '../data/dummy_data.dart';
+import '../data/meal.dart';
 
+import '../screens/meal_screen.dart';
 import 'category_item.dart';
 
-class CategoryScreen extends StatefulWidget {
+class CategoryScreen extends StatelessWidget {
   final Meal meal;
-final Category category;
+  final Category category;
+  final Map<String, bool> filters;
+  final List<Meal> availableMeals;
 
-  const CategoryScreen({Key? key, required this.meal, required this.category, }) : super(key: key);
+  const CategoryScreen({
+    Key? key,
+    required this.meal,
+    required this.category,
+    required this.filters,
+    required this.availableMeals,
+  }) : super(key: key);
 
-  @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
-}
-
-class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    final category = widget.category;
+    print(filters);
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -32,10 +36,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         child: GridView.builder(
           itemCount: availableCategories.length,
-          scrollDirection: Axis.vertical,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 12.0,
@@ -48,14 +51,25 @@ class _CategoryScreenState extends State<CategoryScreen> {
               category,
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => MealScreen(category: category, mealss: widget.meal),
+                  builder: (context) => MealScreen(
+                    category: category,
+                    meal: meal,
+                    availableMeals: availableMeals,
+                    filters: filters,
+                  ),
                 ),
               ),
             );
           },
         ),
       ),
-      drawer: Draweer(title: 'ok', category: widget.category, meal: widget.meal),
+      drawer: Drawer(
+        child: Draweer(
+          title: 'Drawer Example',
+          category: category,
+          meal: meal,
+        ),
+      ),
     );
   }
 }

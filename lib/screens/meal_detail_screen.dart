@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/data/category.dart';
 import '../../data/meal.dart';
+import '../components/drawer.dart';
 
 
 
@@ -8,12 +10,13 @@ class MealDetailScreen extends StatefulWidget {
   final Meal meal;
   final Function(Meal) onToggleFavorite;
   final bool isFavorite;
-
+  final Category category;
   const MealDetailScreen({
     Key? key,
     required this.meal,
     required this.onToggleFavorite,
     required this.isFavorite,
+    required this.category,
   }) : super(key: key);
 
   @override
@@ -127,6 +130,8 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
           ],
         ),
       ),
+      // drawer:
+      // Draweer(title: 'ok', category: widget.category, meal: widget.meal, ),
     );
   }
 }

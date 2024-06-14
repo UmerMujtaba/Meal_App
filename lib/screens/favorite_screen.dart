@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mealapp/screens/meal_detail_screen.dart';
 
+import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
 import '../data/category.dart';
+import '../data/dummy_data.dart';
 import '../data/meal.dart';
+import '../models/cateogry_screen.dart';
 
 
 class FavoriteScreen extends StatefulWidget {
@@ -17,6 +20,9 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  final Meal _sampleMeal = dummyMeals[0];
+  final Category _sampleCategory = availableCategories[0];
+
   @override
   Widget build(BuildContext context) {
     //final category = widget.category;
@@ -162,11 +168,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           );
         },
       ),
-      drawer:  Draweer(
-        title: 'ok',
-          category: widget.category, meal: widget.meal
-      ),
-      // bottomNavigationBar: BottomBar(meal: widget.meal, category: widget.category,),
+      // drawer:  Draweer(
+      //   title: 'ok',
+      //     category: widget.category, meal: widget.meal
+      // ),
+
     );
   }
 }

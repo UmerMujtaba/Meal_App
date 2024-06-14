@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-
 import 'package:mealapp/screens/meal_detail_screen.dart';
-import '../components/bottom_bar.dart';
-import '../components/drawer.dart';
 import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
+import '../models/cateogry_screen.dart';
+import 'favorite_screen.dart';
 
 class MealScreen extends StatefulWidget {
-  final Meal mealss;
+  final Meal meal;
   final Category category;
+  final List<Meal> availableMeals;
+  final Map<String, bool> filters;
 
-  const MealScreen({super.key, required this.category, required this.mealss});
+  const MealScreen({
+    super.key,
+    required this.meal,
+    required this.category,
+    required this.availableMeals,
+    required this.filters,
+  });
 
   @override
   State<MealScreen> createState() => _MealScreenState();
 }
 
 class _MealScreenState extends State<MealScreen> {
+
   void toggleFavorite(Meal meal) {
     setState(() {
       if (favoriteMeals.contains(meal)) {
@@ -26,6 +34,7 @@ class _MealScreenState extends State<MealScreen> {
         favoriteMeals.add(meal);
       }
     });
+
   }
 
   @override
@@ -33,7 +42,8 @@ class _MealScreenState extends State<MealScreen> {
     final meals = dummyMeals.where((meals) {
       return meals.categories.contains(widget.category.id);
     }).toList();
-
+    print(widget.filters);
+    
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -65,6 +75,7 @@ class _MealScreenState extends State<MealScreen> {
                           meal: meal,
                           onToggleFavorite: toggleFavorite,
                           isFavorite: isFavorite,
+                          category: widget.category,
                         ),
                       ),
                     ),
@@ -189,9 +200,43 @@ class _MealScreenState extends State<MealScreen> {
                 );
               },
             ),
-      drawer:
-          Draweer(title: 'ok', category: widget.category, meal: widget.mealss),
-      //bottomNavigationBar: BottomBar(),
+      // drawer:
+      // Draweer(title: 'ok', category: widget.category, meal: widget.meal),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Categories',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+        ],
+        currentIndex: 0, // Assume current screen is MealScreen
+        selectedItemColor: Colors.amber[800],
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryScreen(
+                        meal: widget.meal,
+                        category: widget.category,
+                        filters: widget.filters,
+                        availableMeals: widget.availableMeals,
+                      )),
+            );
+          } else if (index == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FavoriteScreen(
+                      meal: widget.meal, category: widget.category)),
+            );
+          }
+        },
+      ),
     );
   }
 }
