@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/screens/screen_detail.dart';
-import '../../data/meal.dart';
-import '../components/drawer.dart';
+import 'package:mealapp/screens/meal_detail_screen.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+import '../components/bottom_bar.dart';
+import '../components/drawer.dart';
+import '../data/category.dart';
+import '../data/dummy_data.dart';
+import '../data/meal.dart';
+import '../models/cateogry_screen.dart';
+
+
+class FavoriteScreen extends StatefulWidget {
+  final Meal meal;
+  final Category category;
+
+  const FavoriteScreen({Key? key, required this.meal, required this.category}) : super(key: key);
+
+  @override
+  State<FavoriteScreen> createState() => _FavoriteScreenState();
+}
+
+class _FavoriteScreenState extends State<FavoriteScreen> {
+  final Meal _sampleMeal = dummyMeals[0];
+  final Category _sampleCategory = availableCategories[0];
 
   @override
   Widget build(BuildContext context) {
+    //final category = widget.category;
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -150,9 +168,11 @@ class FavoriteScreen extends StatelessWidget {
           );
         },
       ),
-      drawer: const Draweer(
-        title: 'ok',
-      ),
+      // drawer:  Draweer(
+      //   title: 'ok',
+      //     category: widget.category, meal: widget.meal
+      // ),
+
     );
   }
 }
