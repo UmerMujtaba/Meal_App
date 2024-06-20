@@ -1,30 +1,30 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../components/bottom_bar.dart';
 import '../components/drawer.dart';
-import '../data/category.dart';
+import '../data/category.dart' as app;
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 
+import '../provider/meal_provider.dart';
 import '../screens/meal_screen.dart';
 import 'category_item.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends ConsumerWidget {
   final Meal meal;
-  final Category category;
-  final Map<String, bool> filters;
-  final List<Meal> availableMeals;
+  final app.Category category;
 
   const CategoryScreen({
     Key? key,
     required this.meal,
     required this.category,
-    required this.filters,
-    required this.availableMeals,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    print(filters);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+    print(favoriteMeals);
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -36,7 +36,7 @@ class CategoryScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
           itemCount: availableCategories.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,12 +51,7 @@ class CategoryScreen extends StatelessWidget {
               category,
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => MealScreen(
-                    category: category,
-                    meal: meal,
-                    availableMeals: availableMeals,
-                    filters: filters,
-                  ),
+                  builder: (context) => MealScreen(category: category, meal),
                 ),
               ),
             );
@@ -66,8 +61,9 @@ class CategoryScreen extends StatelessWidget {
       drawer: Drawer(
         child: Draweer(
           title: 'Drawer Example',
-          category: category,
-          meal: meal,
+
+          meal: meal, category: category,
+          //category: null,
         ),
       ),
     );

@@ -15,7 +15,7 @@ class FavoriteProvider extends ChangeNotifier {
   }
 
   void remove(List item) {
-    _items.remove(items);
+    _items.remove(items as Meal);
     notifyListeners();
   }
 

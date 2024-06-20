@@ -1,98 +1,79 @@
 import 'package:flutter/material.dart';
-import '../data/category.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/category.dart'; // Adjust the import path as per your project structure
 import '../data/meal.dart';
+import '../provider/meal_provider.dart'; // Adjust the import path as per your project structure
 
-class FilterScreen extends StatefulWidget {
+class FilterScreen extends ConsumerWidget {
   final Meal meal;
   final Category category;
-  // final List<bool> isSelectedList;
-  // final Function(List<bool>) updateSelected;
-  final Map<String, bool> filters;
-  final Function(Map<String, bool>) updateFilters;
 
-   const FilterScreen({
-    super.key,
+  const FilterScreen({
+    Key? key,
     required this.meal,
     required this.category,
-     required this.filters,
-     required this.updateFilters,
-  });
+  }) : super(key: key);
 
   @override
-  State<FilterScreen> createState() => _FilterScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filters = ref.watch(filtersProvider); // Read filters from the provider
 
-class _FilterScreenState extends State<FilterScreen> {
-  late Map<String, bool> filters;
-
-  @override
-  void initState() {
-    super.initState();
-    filters = Map.from(widget.filters);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black54,
         iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text('Your Filters',style: TextStyle(
-            color: Colors.white,fontSize: 22
-        ),),
+        title: const Text(
+          'Your Filters',
+          style: TextStyle(color: Colors.white, fontSize: 22),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context, filters);
-
+            Navigator.pop(context);
           },
         ),
       ),
       body: Column(
         children: <Widget>[
           SwitchListTile(
-            title: const Text('Gluten-Free', style: TextStyle(
-              color: Colors.white,fontSize: 22
-            ),),
+            title: const Text(
+              'Gluten-Free',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
             value: filters['isGlutenFree'] ?? false,
             onChanged: (newValue) {
-              setState(() {
-                filters['isGlutenFree'] = newValue;
-              });
+              ref.read(filtersProvider.notifier).updateFilter('isGlutenFree', newValue);
             },
           ),
           SwitchListTile(
-            title: const Text('Vegan', style: TextStyle(
-                color: Colors.white,fontSize: 22
-            ),),
+            title: const Text(
+              'Vegan',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
             value: filters['isVegan'] ?? false,
             onChanged: (newValue) {
-              setState(() {
-                filters['isVegan'] = newValue;
-              });
+              ref.read(filtersProvider.notifier).updateFilter('isVegan', newValue);
             },
           ),
           SwitchListTile(
-            title: const Text('Vegetarian', style: TextStyle(
-                color: Colors.white,fontSize: 22
-            ),),
+            title: const Text(
+              'Vegetarian',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
             value: filters['isVegetarian'] ?? false,
             onChanged: (newValue) {
-              setState(() {
-                filters['isVegetarian'] = newValue;
-              });
+              ref.read(filtersProvider.notifier).updateFilter('isVegetarian', newValue);
             },
           ),
           SwitchListTile(
-            title: const Text('Lactose-Free', style: TextStyle(
-                color: Colors.white,fontSize: 22
-            ),),
+            title: const Text(
+              'Lactose-Free',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
             value: filters['isLactoseFree'] ?? false,
             onChanged: (newValue) {
-              setState(() {
-                filters['isLactoseFree'] = newValue;
-              });
+              ref.read(filtersProvider.notifier).updateFilter('isLactoseFree', newValue);
             },
           ),
         ],

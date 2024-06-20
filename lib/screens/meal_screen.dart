@@ -1,95 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealapp/screens/meal_detail_screen.dart';
 import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 import '../models/cateogry_screen.dart';
+import '../provider/meal_provider.dart';
 import 'favorite_screen.dart';
 
-class MealScreen extends StatefulWidget {
-  final Meal meal;
+class MealScreen extends ConsumerWidget {
   final Category category;
-  final List<Meal> availableMeals;
-  final Map<String, bool> filters;
+  final Meal meal;
 
-  const MealScreen({
+  const MealScreen(
+    this.meal, {
     super.key,
-    required this.meal,
     required this.category,
-    required this.availableMeals,
-    required this.filters,
   });
 
-  @override
-  State<MealScreen> createState() => _MealScreenState();
-}
-
-class _MealScreenState extends State<MealScreen> {
-  void toggleFavorite(Meal meal) {
-    setState(() {
-      if (favoriteMeals.contains(meal)) {
-        favoriteMeals.remove(meal);
-      } else {
-        favoriteMeals.add(meal);
-      }
-    });
-  }
-
-
-  late List<Meal> displayedMeals;
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final displayedMeals = ref.watch(filteredMealsProvider(category));
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
 
-    displayedMeals = widget.availableMeals.where((meal) {
-      return meal.categories.contains(widget.category.id);
-    }).toList();
-    // Apply filters to initially display the matched meals
-    applyFilters();
-  }
-
-  void applyFilters() {
-    setState(() {
-      displayedMeals = widget.availableMeals.where((meal) {
-
-        bool categoryMatch = meal.categories.contains(widget.category.id);
-
-
-        if (!categoryMatch) {
-          return false;
-        }
-
-        // Check if the meal matches all applied filters
-        bool filterMatch = (widget.filters['isGlutenFree'] == meal.isGlutenFree) &&
-            (widget.filters['isVegan'] == meal.isVegan) &&
-            (widget.filters['isVegetarian'] == meal.isVegetarian) &&
-            (widget.filters['isLactoseFree'] == meal.isLactoseFree);
-
-        // Debugging: Print filter match information
-        if (!filterMatch) {
-          print('Meal ${meal.id} matches filters');
-        }
-
-        // Return true if both categoryMatch and filterMatch are true
-        return categoryMatch && filterMatch;
-      }).toList();
-
-      // Debugging: Print displayed meals
-      print('Displayed Meals: ${displayedMeals.map((meal) => meal.id).toList()}');
-    });
-  }
-  //print(widget.filters);
-
-  @override
-  Widget build(BuildContext context) {
+    void toggleFavorite(Meal meal) {
+      ref.read(favoriteMealsProvider.notifier).toggleFavorite(meal);
+    }
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black54,
         title: Text(
-          widget.category.title,
+          category.title,
           style: const TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
@@ -114,7 +58,7 @@ class _MealScreenState extends State<MealScreen> {
                           meal: meal,
                           onToggleFavorite: toggleFavorite,
                           isFavorite: isFavorite,
-                          category: widget.category,
+                          category: category,
                         ),
                       ),
                     ),
@@ -255,7 +199,8 @@ class _MealScreenState extends State<MealScreen> {
             label: 'Favorites',
           ),
         ],
-        currentIndex: 0, // Assume current screen is MealScreen
+        currentIndex: 0,
+        // Assume current screen is MealScreen
 
         onTap: (index) {
           if (index == 0) {
@@ -263,18 +208,16 @@ class _MealScreenState extends State<MealScreen> {
               context,
               MaterialPageRoute(
                   builder: (context) => CategoryScreen(
-                        meal: widget.meal,
-                        category: widget.category,
-                        filters: widget.filters,
-                        availableMeals: widget.availableMeals,
+                        meal: meal,
+                        category: category,
                       )),
             );
           } else if (index == 1) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => FavoriteScreen(
-                      meal: widget.meal, category: widget.category)),
+                  builder: (context) =>
+                      FavoriteScreen(meal: meal, category: category)),
             );
           }
         },

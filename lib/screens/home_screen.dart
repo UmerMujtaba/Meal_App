@@ -19,8 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final Meal _sampleMeal = dummyMeals[0];
   final Category _sampleCategory = availableCategories[0];
 
-  // Handle favorite toggling
-  bool _isFavorite = false;
 
   List<bool> _isSelectedList = []; // Hold selected filters
 
@@ -33,15 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of screens with required data passed
   List<Widget> _widgetOptions() {
     return <Widget>[
-      CategoryScreen(meal: _sampleMeal, category: _sampleCategory, availableMeals: [], filters: {},),
+      CategoryScreen(meal: _sampleMeal, category: _sampleCategory,),
       FavoriteScreen(meal: _sampleMeal, category: _sampleCategory),
-      // MealScreen(category: _sampleCategory, mealss: _sampleMeal),
-      // MealDetailScreen(
-      //   meal: _sampleMeal,
-      //   onToggleFavorite: _toggleFavorite,
-      //   isFavorite: _isFavorite,
-      //   category: _sampleCategory,
-      // ),
+
     ];
   }
 

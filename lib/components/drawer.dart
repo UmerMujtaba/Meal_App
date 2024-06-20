@@ -41,8 +41,7 @@ class _DraweerState extends State<Draweer> {
       context,
       MaterialPageRoute(
         builder: (context) => FilterScreen(
-          filters: filters,
-          updateFilters: updateFilters,
+
           meal: widget.meal,
           category: widget.category,
         ),
@@ -95,11 +94,9 @@ class _DraweerState extends State<Draweer> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => CategoryScreen(
-                      availableMeals: dummyMeals,
-                      filters: filters,
                       meal: widget.meal,
                       category: widget.category,
-                    ),
+                   ),
                   ),
                 );
               },

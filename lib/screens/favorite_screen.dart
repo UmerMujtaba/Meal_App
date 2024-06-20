@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealapp/screens/meal_detail_screen.dart';
 
 import '../components/bottom_bar.dart';
@@ -7,25 +8,23 @@ import '../data/category.dart';
 import '../data/dummy_data.dart';
 import '../data/meal.dart';
 import '../models/cateogry_screen.dart';
+import '../provider/favorite_provider.dart';
+import '../provider/meal_provider.dart';
 
 
-class FavoriteScreen extends StatefulWidget {
+class FavoriteScreen extends ConsumerWidget {
   final Meal meal;
   final Category category;
 
   const FavoriteScreen({Key? key, required this.meal, required this.category}) : super(key: key);
 
   @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
-  final Meal _sampleMeal = dummyMeals[0];
-  final Category _sampleCategory = availableCategories[0];
-
-  @override
-  Widget build(BuildContext context) {
-    //final category = widget.category;
+    void toggleFavorite(Meal meal) {
+      ref.read(FavoriteProvider as ProviderListenable);
+    }
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
