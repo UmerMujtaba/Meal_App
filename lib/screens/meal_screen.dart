@@ -25,7 +25,6 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealScreen> {
-
   void toggleFavorite(Meal meal) {
     setState(() {
       if (favoriteMeals.contains(meal)) {
@@ -34,16 +33,56 @@ class _MealScreenState extends State<MealScreen> {
         favoriteMeals.add(meal);
       }
     });
-
   }
+
+
+  late List<Meal> displayedMeals;
+
+  @override
+  void initState() {
+    super.initState();
+
+    displayedMeals = widget.availableMeals.where((meal) {
+      return meal.categories.contains(widget.category.id);
+    }).toList();
+    // Apply filters to initially display the matched meals
+    applyFilters();
+  }
+
+  void applyFilters() {
+    setState(() {
+      displayedMeals = widget.availableMeals.where((meal) {
+
+        bool categoryMatch = meal.categories.contains(widget.category.id);
+
+
+        if (!categoryMatch) {
+          return false;
+        }
+
+        // Check if the meal matches all applied filters
+        bool filterMatch = (widget.filters['isGlutenFree'] == meal.isGlutenFree) &&
+            (widget.filters['isVegan'] == meal.isVegan) &&
+            (widget.filters['isVegetarian'] == meal.isVegetarian) &&
+            (widget.filters['isLactoseFree'] == meal.isLactoseFree);
+
+        // Debugging: Print filter match information
+        if (!filterMatch) {
+          print('Meal ${meal.id} matches filters');
+        }
+
+        // Return true if both categoryMatch and filterMatch are true
+        return categoryMatch && filterMatch;
+      }).toList();
+
+      // Debugging: Print displayed meals
+      print('Displayed Meals: ${displayedMeals.map((meal) => meal.id).toList()}');
+    });
+  }
+  //print(widget.filters);
 
   @override
   Widget build(BuildContext context) {
-    final meals = dummyMeals.where((meals) {
-      return meals.categories.contains(widget.category.id);
-    }).toList();
-    print(widget.filters);
-    
     return Scaffold(
       backgroundColor: Colors.black54,
       appBar: AppBar(
@@ -54,7 +93,7 @@ class _MealScreenState extends State<MealScreen> {
           style: const TextStyle(fontSize: 22, color: Colors.white),
         ),
       ),
-      body: meals.isEmpty
+      body: displayedMeals.isEmpty
           ? const Center(
               child: Text(
                 'No meals available.',
@@ -62,9 +101,9 @@ class _MealScreenState extends State<MealScreen> {
               ),
             )
           : ListView.builder(
-              itemCount: meals.length,
+              itemCount: displayedMeals.length,
               itemBuilder: (ctx, index) {
-                final meal = meals[index];
+                final meal = displayedMeals[index];
                 final isFavorite = favoriteMeals.contains(meal);
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -203,6 +242,9 @@ class _MealScreenState extends State<MealScreen> {
       // drawer:
       // Draweer(title: 'ok', category: widget.category, meal: widget.meal),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.cyan,
+        backgroundColor: Colors.black54,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
@@ -214,7 +256,7 @@ class _MealScreenState extends State<MealScreen> {
           ),
         ],
         currentIndex: 0, // Assume current screen is MealScreen
-        selectedItemColor: Colors.amber[800],
+
         onTap: (index) {
           if (index == 0) {
             Navigator.push(

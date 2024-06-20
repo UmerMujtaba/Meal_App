@@ -67,14 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.fastfood),
-          //   label: 'Meals',
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.info),
-          //   label: 'Details',
-          // ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],

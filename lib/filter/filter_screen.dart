@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/category.dart';
 import '../data/meal.dart';
-// Adjust import as per your project structure
-import 'filter_list_item.dart'; // Adjust the import to the correct path if needed
 
 class FilterScreen extends StatefulWidget {
   final Meal meal;
@@ -12,13 +10,13 @@ class FilterScreen extends StatefulWidget {
   final Map<String, bool> filters;
   final Function(Map<String, bool>) updateFilters;
 
-   FilterScreen({
-    Key? key,
+   const FilterScreen({
+    super.key,
     required this.meal,
     required this.category,
      required this.filters,
      required this.updateFilters,
-  }) : super(key: key);
+  });
 
   @override
   State<FilterScreen> createState() => _FilterScreenState();
@@ -39,6 +37,7 @@ class _FilterScreenState extends State<FilterScreen> {
       backgroundColor: Colors.black54,
       appBar: AppBar(
         backgroundColor: Colors.black54,
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text('Your Filters',style: TextStyle(
             color: Colors.white,fontSize: 22
         ),),
